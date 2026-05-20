@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: text2sql
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro 
+      # Note: I also updated the volume path from ./app/sql to ./sql since you are already inside the app folder.
+
+  app:
+    build:
+      context: . # <-- Change this from ./app to .
+    env_file:
+      - ../.env
+    ports:
+      - "8501:8501"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/text2sql
+    depends_on:
+      - db
