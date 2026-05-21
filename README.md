@@ -1,12 +1,4 @@
-# Text2SQL Agent Suite
 
-This repository is a multi-component Text-to-SQL system built around the ClassicModels database.
-
-## Components
-
-- `Query_Decomposition/`: natural-language query decomposition into structured fields
-- `Text-to-SQL Pipeline/`: prompt-chained SQL generation, validation, execution, and single-step repair
-- `Agentic Text-to-SQL Assistant/`: agentic assistant with Streamlit UI, FastAPI endpoint, retry loop, and summarization
 
 ## Repository Layout
 
